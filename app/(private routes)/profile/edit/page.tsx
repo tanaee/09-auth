@@ -19,6 +19,7 @@ export default function Edit() {
   const handleSaveUser = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await updateMe({ username });
+    router.push("/profile");
   };
   return (
     <main className={css.mainContent}>
