@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { api } from "@/app/api/api";
+import { api } from "../../api";
 import { parse } from "cookie";
 import { isAxiosError } from "axios";
 import { logErrorResponse } from "../../_utils/utils";
@@ -21,16 +21,16 @@ export async function GET(request: NextRequest) {
       if (setCookie) {
         const cookieArray = Array.isArray(setCookie) ? setCookie : [setCookie];
         let accessToken = "";
-        let refreshToken = "";
+        let newRefreshToken = "";
 
         for (const cookieStr of cookieArray) {
           const parsed = parse(cookieStr);
           if (parsed.accessToken) accessToken = parsed.accessToken;
-          if (parsed.refreshToken) refreshToken = parsed.refreshToken;
+          if (parsed.refreshToken) newRefreshToken = parsed.refreshToken;
         }
 
         if (accessToken) cookieStore.set("accessToken", accessToken);
-        if (refreshToken) cookieStore.set("refreshToken", refreshToken);
+        if (newRefreshToken) cookieStore.set("refreshToken", newRefreshToken);
 
         return NextResponse.redirect(new URL(next, request.url), {
           headers: {

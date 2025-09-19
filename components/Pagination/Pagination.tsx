@@ -24,7 +24,7 @@ export default function Pagination({
       renderOnZeroPageCount={null}
       containerClassName={css.pagination}
       activeClassName={css.active}
-      forcePage={forcePage} // щоб можна було контролювати ззовні
+      forcePage={forcePage}
     />
   );
 }

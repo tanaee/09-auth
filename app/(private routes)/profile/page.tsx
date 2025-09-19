@@ -3,6 +3,7 @@ import css from "./ProfilePage.module.css";
 import { getServerMe } from "@/lib/api/serverApi";
 import Image from "next/image";
 import { Metadata } from "next";
+
 export const metadata: Metadata = {
   title: "Profile",
   description:
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
     title: "Profile",
     description:
       "View and edit your profile information, including username and avatar.",
-    url: "https://notehub.versel.app/",
+    url: "https://notehub.vercel.app/",
     images: [
       {
         url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
@@ -22,8 +23,10 @@ export const metadata: Metadata = {
     ],
   },
 };
+
 export default async function Profile() {
   const user = await getServerMe();
+
   return (
     <main className={css.mainContent}>
       <div className={css.profileCard}>
@@ -33,17 +36,19 @@ export default async function Profile() {
             Edit Profile
           </Link>
         </div>
+
         <div className={css.avatarWrapper}>
           <Image
-            src="/my-avatar.png.png"
-            alt="User Avatar"
+            src={user.avatar}
+            alt={`${user.username}'s Avatar`}
             width={120}
             height={120}
             className={css.avatar}
           />
         </div>
+
         <div className={css.profileInfo}>
-          <p>Username:{user.username}</p>
+          <p>Username: {user.username}</p>
           <p>Email: {user.email}</p>
         </div>
       </div>

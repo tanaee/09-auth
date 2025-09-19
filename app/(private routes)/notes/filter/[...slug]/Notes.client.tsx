@@ -14,7 +14,6 @@ interface NoteDeClientProps {
   filter?: string;
 }
 export default function NotesClient({ filter }: NoteDeClientProps) {
-  // const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchNote, setSearchNote] = useState("");
   const [updateSearchNote] = useDebounce(searchNote, 300);
